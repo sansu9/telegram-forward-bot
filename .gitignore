@@ -1,0 +1,16 @@
+# 真实配置——从 config.example.py 复制而来，包含你的账号信息，绝不能提交
+config.py
+
+# Telethon 会话文件——等同于账号登录凭证，泄露 = 账号被接管
+*.session
+*.session-journal
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+env/
+
+# 系统文件
+.DS_Store
