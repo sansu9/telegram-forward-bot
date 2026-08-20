@@ -5,6 +5,9 @@ config.py
 *.session
 *.session-journal
 
+# 去重功能生成的运行时数据，每台机器上都不一样，不用提交
+seen_messages.json
+
 # Python
 __pycache__/
 *.pyc
