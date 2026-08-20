@@ -17,6 +17,7 @@ from config import (
     SOURCE_CHATS, DESTINATION_CHAT, USE_NATIVE_FORWARD,
 )
 from ad_filter import is_advertisement, clean_message
+from dedup import is_duplicate
 
 logging.basicConfig(
     level=logging.INFO,
@@ -38,6 +39,10 @@ async def handler(event):
         # 避免在开启 AI 过滤时卡住整个事件循环
         if await asyncio.to_thread(is_advertisement, text):
             logger.info("已过滤广告消息：%s", text[:30].replace("\n", " "))
+            return
+
+        if await asyncio.to_thread(is_duplicate, text):
+            logger.info("已过滤重复消息：%s", text[:30].replace("\n", " "))
             return
 
         if USE_NATIVE_FORWARD:
